@@ -1,0 +1,178 @@
+[
+    {
+      "id": "1",
+      "name": "Câmera de Segurança 1",
+      "serial": "CS123",
+      "macAddress": "00:11:22:33:44:55",
+      "type": "CAMERA"
+    },
+    {
+      "id": "2",
+      "name": "Sensor de Movimento 1",
+      "serial": "SM456",
+      "macAddress": "AA:BB:CC:DD:EE:FF",
+      "type": "SENSOR"
+    },
+    {
+      "id": "3",
+      "name": "Controle Remoto 1",
+      "serial": "CR789",
+      "macAddress": "11:22:33:44:55:66",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "4",
+      "name": "Câmera de Segurança 2",
+      "serial": "CS456",
+      "macAddress": "01:02:03:04:05:06",
+      "type": "CAMERA"
+    },
+    {
+      "id": "5",
+      "name": "Sensor de Movimento 2",
+      "serial": "SM789",
+      "macAddress": "AA:CC:BB:DD:EE:FF",
+      "type": "SENSOR"
+    },
+    {
+      "id": "6",
+      "name": "Controle Remoto 2",
+      "serial": "CR123",
+      "macAddress": "12:34:56:78:90:AB",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "7",
+      "name": "Câmera de Segurança 3",
+      "serial": "CS789",
+      "macAddress": "AB:CD:EF:12:34:56",
+      "type": "CAMERA"
+    },
+    {
+      "id": "8",
+      "name": "Sensor de Movimento 3",
+      "serial": "SM123",
+      "macAddress": "BA:DC:FE:21:43:65",
+      "type": "SENSOR"
+    },
+    {
+      "id": "9",
+      "name": "Controle Remoto 3",
+      "serial": "CR456",
+      "macAddress": "11:22:33:44:55:66",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "10",
+      "name": "Câmera de Segurança 4",
+      "serial": "CS010",
+      "macAddress": "01:23:45:67:89:AB",
+      "type": "CAMERA"
+    },
+    {
+      "id": "11",
+      "name": "Sensor de Movimento 4",
+      "serial": "SM020",
+      "macAddress": "CC:DD:EE:FF:AA:BB",
+      "type": "SENSOR"
+    },
+    {
+      "id": "12",
+      "name": "Controle Remoto 4",
+      "serial": "CR030",
+      "macAddress": "11:22:33:44:55:66",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "13",
+      "name": "Câmera de Segurança 5",
+      "serial": "CS040",
+      "macAddress": "AA:BB:CC:DD:EE:FF",
+      "type": "CAMERA"
+    },
+    {
+      "id": "14",
+      "name": "Sensor de Movimento 5",
+      "serial": "SM050",
+      "macAddress": "01:23:45:67:89:AB",
+      "type": "SENSOR"
+    },
+    {
+      "id": "15",
+      "name": "Controle Remoto 5",
+      "serial": "CR060",
+      "macAddress": "12:34:56:78:90:AB",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "16",
+      "name": "Câmera de Segurança 6",
+      "serial": "CS070",
+      "macAddress": "AB:CD:EF:12:34:56",
+      "type": "CAMERA"
+    },
+    {
+      "id": "17",
+      "name": "Sensor de Movimento 6",
+      "serial": "SM080",
+      "macAddress": "BA:DC:FE:21:43:65",
+      "type": "SENSOR"
+    },
+    {
+      "id": "18",
+      "name": "Controle Remoto 6",
+      "serial": "CR090",
+      "macAddress": "11:22:33:44:55:66",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "19",
+      "name": "Câmera de Segurança 7",
+      "serial": "CS100",
+      "macAddress": "01:23:45:67:89:AB",
+      "type": "CAMERA"
+    },
+    {
+      "id": "20",
+      "name": "Sensor de Movimento 7",
+      "serial": "SM110",
+      "macAddress": "CC:DD:EE:FF:AA:BB",
+      "type": "SENSOR"
+    },
+    {
+      "id": "21",
+      "name": "Controle Remoto 7",
+      "serial": "CR120",
+      "macAddress": "11:22:33:44:55:66",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "22",
+      "name": "Câmera de Segurança 8",
+      "serial": "CS130",
+      "macAddress": "AA:BB:CC:DD:EE:FF",
+      "type": "CAMERA"
+    },
+    {
+      "id": "23",
+      "name": "Sensor de Movimento 8",
+      "serial": "SM140",
+      "macAddress": "01:23:45:67:89:AB",
+      "type": "SENSOR"
+    },
+    {
+      "id": "24",
+      "name": "Controle Remoto 8",
+      "serial": "CR150",
+      "macAddress": "12:34:56:78:90:AB",
+      "type": "REMOTE_CONTROL"
+    },
+    {
+      "id": "25",
+      "name": "Câmera de Segurança 9",
+      "serial": "CS160",
+      "macAddress": "AB:CD:EF:12:34:56",
+      "type": "CAMERA"
+    }
+  ]
+  
