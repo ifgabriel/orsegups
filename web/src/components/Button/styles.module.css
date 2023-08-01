@@ -1,0 +1,22 @@
+@import url('@/theme.css');
+
+.Button {
+    width: fit-content;
+    height: 40px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justyfy-conten: center;
+
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+
+    background: var(--dark);
+    color: var(--light);
+}
+
+.Button:hover {
+    opacity: .80;
+}

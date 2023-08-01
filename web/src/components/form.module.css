@@ -1,0 +1,16 @@
+.Input {
+    appearance: unset;
+    
+    margin-top: 8px;
+    height: 40px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    background: var(--gray-300);
+    border: 1px solid var(--gray-300);
+}
+
+.Input:focus {
+    outline: 1px solid var(--gray-200);
+}

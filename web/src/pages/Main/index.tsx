@@ -1,60 +1,54 @@
-import { Skeleton } from "@/components"
-import { ModelDevice } from "@/domain"
-import { useDeleteDevice, useEditDevice, useFetchDevices } from "@/services"
-import { handleStateRender } from "@/utils"
+import { Button, Device, Modal, Skeleton } from "@/components"
+import { useCreateDevice, useDeleteDevice, useEditDevice, useFetchDevices } from "@/services"
+import { handleStateRender, joinClassNames } from "@/utils"
 
-import { ApertureIcon, CameraIcon, JoystickIcon } from "lucide-react"
-import { ReactElement } from "react"
-import styles from './styles.module.scss'
-
-const handleIcon = (type: ModelDevice['type']) => {
-    const icons: Record<ModelDevice['type'], ReactElement> = {
-        CAMERA: <CameraIcon />,
-        SENSOR: <ApertureIcon />,
-        REMOTE_CONTROL: <JoystickIcon />
-    }
-
-    return icons[type]
-}
+import Form from "./Form"
+import styles from './styles.module.css'
 
 const Main = () => {
     const { data, isFetched } = useFetchDevices()
     const { mutate: editDevice } = useEditDevice()
+    const { mutate: createDevice } = useCreateDevice()
     const { mutate: deleteDevice } = useDeleteDevice()
 
     return (
         <main className={styles.Container}>
             <h1>Dispositivos</h1>
+            <Modal.Root>
+                <Modal.Trigger>
+                    <Button>Cadastrar Produto</Button>
+                </Modal.Trigger>
+                <Modal.Content>
+                    <h2>Cadastrar Produto</h2>
+                    <Form action={createDevice} />
+                </Modal.Content>
+            </Modal.Root>
             {{
                 view: !!data && (
-                    <section className={styles.Devices}>
-                        <ul>
-                            {data.map((device) => (
-                                <li key={device.id}>
-                                    {handleIcon(device.type)}
-                                    <div>
-                                        <span>{device.name}</span>
-                                        <span>{device.serial}</span>
-                                        <span>{device.macAddress}</span>
-                                    </div>
-                                    <div>
-                                        <button type='button' onClick={() => editDevice(device)}>Edit</button>
-                                        <button type='button' onClick={() => deleteDevice(device.id)}>Delete</button>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
+                    <ul className={joinClassNames(styles.List)}>
+                        {data.map((device) => (
+                            <Device.Root key={device.id}>
+                                <Device.Content {...device}>
+                                    <Device.Icon type={device.type} />
+                                </Device.Content>
+                                <Device.Actions>
+                                    <Button onClick={() => deleteDevice(device.id)} appearance='negative'>Remover</Button>
+                                    <Button onClick={() => editDevice(device)}>Alterar</Button>
+                                </Device.Actions>
+                            </Device.Root>
+                        ))}
+                    </ul>
                 ),
                 loading: (
-                    Array.from({ length: 10 }).map((_, index) => (
-                        <Skeleton key={`device-skeleton-${index}`} />
-                    ))
+                    <ul className={joinClassNames(styles.List)}>
+                        {Array.from({ length: 10 }).map((_, index) => (
+                            <Skeleton key={`device-skeleton-${index}`} width="100%" height="137px" />
+                        ))}
+                    </ul>
                 ),
                 error: 'ERROR',
                 empty: 'empty',
             }[handleStateRender(isFetched, data)]}
-
         </main>
     )
 }

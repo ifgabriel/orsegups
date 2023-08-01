@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+:root {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', sans-serif;
+
+    --light: #FFFFFF;
+
+    --yellow-100: #FABB18;
+    --yellow-200: #FABB181A;
+    --yellow-300: #FFF8E8;
+
+    --dark: #000;
+    --backdrop: #0000007A;
+    --gray-100: #AFAFAF;
+    --gray-200: #9A9A9A;
+    --gray-300: #F1F1F1;
+}
+
+body {
+    background: #F9F9F9;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 26px;
+    line-height: 1px;
+    color: var(--dark);
+}
+
+h4 {
+    font-size: 16px;
+    line-height: 1px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--gray-200);
+}
+
+* {
+    box-sizing: border-box;
+}

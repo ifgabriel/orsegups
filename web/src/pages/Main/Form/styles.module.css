@@ -1,0 +1,18 @@
+@import url('@/theme.css');
+
+.Form {
+   margin-top: 42px;
+
+   gap: 16px;
+   display: flex;
+   flex-direction: column;
+}
+
+.Footer {
+   margin-top: 32px;
+
+   gap: 16px;
+   display: flex;
+   align-items: center;
+   flex-direction: row-reverse;
+}
