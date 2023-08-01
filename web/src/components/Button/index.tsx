@@ -7,7 +7,7 @@ interface ButtonProps extends   ComponentProps<'button'> {
 }
 
 const Button = ({ className, appearance = 'primary', ...props}: ButtonProps) => (
-    <button type='button' className={joinClassNames(styles.Button, className, styles[appearance])} {...props} />
+    <button className={joinClassNames(styles.Button, className, styles[appearance])} {...props} />
 )
 
 export default Button
