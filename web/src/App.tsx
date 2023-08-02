@@ -1,4 +1,4 @@
-import { Main } from "@/pages"
+import { Main } from '@/pages'
 import { queryClient } from '@/services/utils'
 import { QueryClientProvider } from 'react-query'
 

@@ -1,9 +1,9 @@
 import { Button, Device, Modal, ModalRef, Skeleton } from '@/components'
 import {
-  useCreateDevice,
-  useDeleteDevice,
-  useEditDevice,
-  useFetchDevices,
+    useCreateDevice,
+    useDeleteDevice,
+    useEditDevice,
+    useFetchDevices,
 } from '@/services'
 import { handleStateRender, joinClassNames } from '@/utils'
 
@@ -23,27 +23,30 @@ const Main = () => {
   const { mutate: createDevice } = useCreateDevice()
   const { mutate: deleteDevice } = useDeleteDevice()
 
-  const handleOnSubmit = useCallback((data: ModelDevice) => {
-    if (!!deviceSelected) {
-      return editDevice(data, {
-        onSuccess: () => {
-          setDeviceSelected(undefined)
-          modalRef.current?.toggle()
-        },
-      })
-    }
+  const handleOnSubmit = useCallback(
+    (data: ModelDevice) => {
+      if (deviceSelected) {
+        return editDevice(data, {
+          onSuccess: () => {
+            setDeviceSelected(undefined)
+            modalRef.current?.toggle()
+          },
+        })
+      }
 
-    createDevice(data, {
-      onSuccess: () => modalRef.current?.toggle(),
-    })
-  }, [deviceSelected])
+      createDevice(data, {
+        onSuccess: () => modalRef.current?.toggle(),
+      })
+    },
+    [deviceSelected],
+  )
 
   return (
     <main className={styles.Container}>
       <h1>Dispositivos</h1>
       <Modal.Root ref={modalRef}>
         <Modal.Trigger>
-          <Button>Cadastrar Produto</Button>
+          <Button>Cadastrar Dispositivo</Button>
         </Modal.Trigger>
         <Modal.Content>
           <h2>Cadastrar Produto</h2>
@@ -65,10 +68,7 @@ const Main = () => {
                       <Device.Icon type={device.type} />
                     </Device.Content>
                     <Device.Actions>
-                      <Button
-                        onClick={() => deleteDevice(device.id)}
-                        appearance="negative"
-                      >
+                      <Button onClick={() => deleteDevice(device.id)}>
                         Remover
                       </Button>
                       <Button
@@ -95,8 +95,20 @@ const Main = () => {
                 ))}
               </ul>
             ),
-            error: <ExceptionState title='Oopss!' type='ERROR' description='Tivemos um problema, tente novamente mais tarde!' />,
-            empty: <ExceptionState title='Oopss!' type='EMPTY' description='Nenhum dispositivo cadastrado!' />,
+            error: (
+              <ExceptionState
+                title="Oopss!"
+                type="ERROR"
+                description="Tivemos um problema, tente novamente mais tarde!"
+              />
+            ),
+            empty: (
+              <ExceptionState
+                title="Oopss!"
+                type="EMPTY"
+                description="Nenhum dispositivo cadastrado!"
+              />
+            ),
           }[handleStateRender(isFetched, data, data?.length === 0)]
         }
       </section>
