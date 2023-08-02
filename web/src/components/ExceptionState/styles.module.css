@@ -1,17 +1,26 @@
-.Skeleton {
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    animation: loadingAnimation 1.5s infinite ease-in-out;
+.ExceptionState {
+    gap: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+    border: 1px solid var(--gray-300);
+    border-radius: 32px;
+    background: var(--light);
+    padding: 16px;
 }
 
-@keyframes loadingAnimation {
-    0% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.5;
-    }
-}
+.Icon {
+    min-width: 60px;
+    min-height: 60px;
+
+    background: var(--yellow-200);
+    color: var(--yellow-100);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+} 

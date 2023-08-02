@@ -8,17 +8,21 @@ interface ExceptionStateProps {
 }
 
 const ExceptionState = ({ title, description, type }: ExceptionStateProps) => (
-  <div className={styles.Container}>
-    {type === 'ERROR'
-      ? <XIcon />
-      : <FileWarningIcon />
-    }
-    <h2>
-      {title}
-    </h2>
-    <span>
-      {description}
-    </span>
+  <div className={styles.ExceptionState}>
+    <div className={styles.Icon}>
+      {type === 'ERROR'
+        ? <XIcon data-testid='error-icon' />
+        : <FileWarningIcon data-testid='empty-icon' />
+      }
+    </div>
+    <div>
+      <h3>
+        {title}
+      </h3>
+      <span>
+        {description}
+      </span>
+    </div>
   </div>
 )
 

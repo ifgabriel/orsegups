@@ -11,6 +11,8 @@
     --yellow-200: #FABB181A;
     --yellow-300: #FFF8E8;
 
+    --error-100: #CB1B1B;
+
     --dark: #000;
     --backdrop: #0000007A;
     --gray-100: #AFAFAF;
@@ -29,7 +31,6 @@ h2 {
 
 h3 {
     font-size: 26px;
-    line-height: 1px;
     color: var(--dark);
 }
 

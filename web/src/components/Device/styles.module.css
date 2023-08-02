@@ -3,8 +3,10 @@
 .Root {
     padding: 16px 16px 24px;
 
+    gap: 32px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
 
     border: 1px solid var(--gray-300);
@@ -23,12 +25,13 @@
     gap: 16px;
     display: flex;
     flex-direction: row-reverse;
+    justify-content: flex-end;
     align-items: flex-end;
 }
 
 .Icon {
-    width: 60px;
-    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
 
     background: var(--yellow-200);
     color: var(--yellow-100);

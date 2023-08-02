@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
-import Select from '.'
 import { createRef } from 'react'
+import Select from '.'
 
 describe('Select', () => {
   it('should render select component', () => {
@@ -63,25 +63,6 @@ describe('Select', () => {
 
     expect(select).toBe(selectRef.current)
   })
-
-  // it('should change select function', () => {
-  //   const mockOnSelect = vi.fn()
-
-  //   const { container } = render(
-  //     <Select label="Field" onSelect={mockOnSelect}>
-  //       <option value="value-1">Option 1</option>
-  //     </Select>,
-  //   )
-
-  //   const select = container.querySelector('select')
-  //   const option = container.querySelector('option')
-
-  //   fireEvent.click(select!)
-  //   fireEvent.click(option!)
-
-  //   expect(option?.selected).toBeTruthy();
-  //   expect(mockOnSelect).toHaveBeenCalled()
-  // })
 
   it('should change select value', () => {
     const { container } = render(

@@ -12,7 +12,7 @@ const useEditDevice = () => {
   return useMutation(({ id, ...params }: ModelDevice) => {
     const path = buildUrl({ route: endpoints.editDevice, params: { id } })
 
-    return Api.patch(path, { ...params, name: 'Gabriel' })
+    return Api.patch(path, params)
   },
     {
       onSuccess: () => {

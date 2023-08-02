@@ -1,10 +1,13 @@
+import { Modal } from '@/components';
 import { fireEvent, render } from '@testing-library/react';
 import Form from '.';
+
+const FormComponent = () => <Form onSubmit={() => { }} onCancel={() => { }} />
 
 describe('Form', () => {
   it('should form component', () => {
 
-    const { container } = render(<Form onSubmit={() => {}} />)
+    const { container } = render(<FormComponent />)
 
     const input = container.querySelector("form")
 
@@ -13,7 +16,7 @@ describe('Form', () => {
   })
 
   it('should render inputs and select', () => {
-    const { container } = render(<Form onSubmit={() => {}} />)
+    const { container } = render(<FormComponent />)
 
     const inputs = container.querySelectorAll("input")
     const selects = container.querySelectorAll("select")
@@ -23,18 +26,23 @@ describe('Form', () => {
   })
 
   it('should render buttons', () => {
-    const { getByText } = render(<Form onSubmit={() => {}} />)
+    const { getByText } = render(<FormComponent />)
 
     expect(getByText('Salvar')).toBeInTheDocument()
     expect(getByText('Cancelar')).toBeInTheDocument()
   })
 
-  it('should call onSubmit function', () => {
-    const mockOnSubmit = vi.fn()
-    const { getByText } = render(<Form onSubmit={mockOnSubmit} />)
+  it('should call onCancel function', () => {
+    const mockOnCancel = vi.fn()
 
-    fireEvent.click(getByText('Salvar'))
-    
-    expect(mockOnSubmit).toBeCalled()
+    const { getByText } = render(
+      <Modal.Root>
+        <Form onSubmit={() => { }} onCancel={mockOnCancel} />
+      </Modal.Root>
+    )
+
+    fireEvent.click(getByText('Cancelar'))
+
+    expect(mockOnCancel).toBeCalled()
   })
 })

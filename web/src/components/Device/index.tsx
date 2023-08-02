@@ -12,9 +12,9 @@ type DeviceContentProps = ComponentProps<'div'> & ModelDevice
 
 const handleIcon = (type: ModelDevice['type']) => {
     const icons: Record<ModelDevice['type'], ReactElement> = {
-        CAMERA: <CameraIcon size={28} />,
-        SENSOR: <ApertureIcon size={28} />,
-        REMOTE_CONTROL: <JoystickIcon size={28} />
+        CAMERA: <CameraIcon size={28} data-testid='CAMERA-icon' />,
+        SENSOR: <ApertureIcon size={28} data-testid='SENSOR-icon'/>,
+        REMOTE_CONTROL: <JoystickIcon size={28}  data-testid='REMOTE_CONTROL-icon'/>
     }
 
     return icons[type]

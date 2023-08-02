@@ -14,3 +14,9 @@
 .Input:focus {
     outline: 1px solid var(--gray-200);
 }
+
+.Feedback {
+    font-size: 12px;
+    height: 12px;
+    color: var(--error-100);
+}
