@@ -1,15 +1,19 @@
 # ORSEGUPS - DEVICES
 
 ### Web
-<img src="assets/web1.png" alt="Projeto Web" width="240px" height="300px">
-<img src="assets/web2.png" alt="Projeto Web" width="240px" height="300px">
-<img src="assets/web3.png" alt="Projeto Web" width="240px" height="300px">
+<div style="display: flex; gap: 16px">
+    <img src="assets/web1.png" alt="Projeto Web" width="240px" height="300px">
+    <img src="assets/web2.png" alt="Projeto Web" width="240px" height="300px">
+    <img src="assets/web3.png" alt="Projeto Web" width="240px" height="300px">
+</div>
 
 ### Mobile
-<img src="assets/mobile1.png" alt="Projeto Mobile" width="160px">
-<img src="assets/mobile2.png" alt="Projeto Mobile" width="160px">
-<img src="assets/mobile3.png" alt="Projeto Mobile" width="160px">
-<img src="assets/mobile4.png" alt="Projeto Mobile" width="160px">
+<div style="display: flex; gap: 16px">
+    <img src="assets/mobile1.png" alt="Projeto Mobile" width="160px">
+    <img src="assets/mobile2.png" alt="Projeto Mobile" width="160px">
+    <img src="assets/mobile3.png" alt="Projeto Mobile" width="160px">
+    <img src="assets/mobile4.png" alt="Projeto Mobile" width="160px">
+</div>
 
 ## 🚀 Usando o projeto Web
 
