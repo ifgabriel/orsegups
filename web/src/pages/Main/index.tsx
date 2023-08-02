@@ -55,7 +55,7 @@ const Main = () => {
           <Button>Cadastrar Dispositivo</Button>
         </Modal.Trigger>
         <Modal.Content>
-          <h2>Cadastrar Produto</h2>
+          <h2>Dispositivo</h2>
           <Form
             onSubmit={handleOnSubmit}
             onCancel={() => setDeviceSelected(undefined)}
