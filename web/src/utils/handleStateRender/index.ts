@@ -1,4 +1,8 @@
-const handleStateRender = (isFetched: boolean, data: unknown, canEmpty?: boolean) => {
+const handleStateRender = (
+  isFetched: boolean,
+  data: unknown,
+  canEmpty?: boolean,
+) => {
   if (isFetched && !data) {
     return 'error'
   }
@@ -10,7 +14,7 @@ const handleStateRender = (isFetched: boolean, data: unknown, canEmpty?: boolean
   if (isFetched && data) {
     return 'view'
   }
-  
+
   return 'loading'
 }
 

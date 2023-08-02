@@ -1,85 +1,126 @@
-import { fireEvent, render } from '@testing-library/react'
-import { createRef } from 'react'
+import { fireEvent, render } from '@testing-library/react-native'
 import Select from '.'
 
 describe('Select', () => {
   it('should render select component', () => {
-    const { container } = render(
-      <Select label='Field'>
-        <option value='value-1'>Option 1</option>
-      </Select>,
+    const { getByTestId } = render(
+      <Select
+        label="Field"
+        options={[{ label: 'Option 1', value: 'CAMERA' }]}
+      />,
     )
 
-    const select = container.querySelector('select')
-
-    expect(select).toBeInTheDocument()
-    expect(select?.nodeName).toBe('SELECT')
+    expect(getByTestId('select-element')).toBeTruthy()
   })
 
-  it('should render select with id props', () => {
-    const { container } = render(
-      <Select id='id-foo' label='Field'>
-        <option value='value-1'>Option 1</option>
-      </Select>,
-    )
-
-    const select = container.querySelector('select')
-
-    expect(select).toHaveAttribute('id', 'id-foo')
-  })
-
-  it('should render select label', () => {
+  it('should render select label props', () => {
     const { getByText } = render(
-      <Select id='id-foo' label='Field'>
-        <option value='value-1'>Option 1</option>
-      </Select>,
+      <Select
+        label="Field"
+        options={[{ label: 'Option 1', value: 'CAMERA' }]}
+      />,
     )
 
-    expect(getByText('Field')).toBeInTheDocument()
+    expect(getByText('Field')).toBeTruthy()
   })
 
-  it('should render select with className props', () => {
-    const { container } = render(
-      <Select label='Field' className='className-foo'>
-        <option value='value-1'>Option 1</option>
-      </Select>,
+  it('should render select with options hidden', () => {
+    const { queryByText } = render(
+      <Select
+        label="Field"
+        options={[
+          { label: 'Option 1', value: 'CAMERA' },
+          { label: 'Option 2', value: 'SENSOR' },
+        ]}
+      />,
     )
 
-    const select = container.querySelector('select')
-
-    expect(select).toHaveClass('className-foo')
+    expect(queryByText('Option 2')).toBeFalsy()
   })
 
-  it('should receive ref', () => {
-    const selectRef = createRef<HTMLSelectElement>()
-
-    const { container } = render(
-      <Select label='Field' ref={selectRef}>
-        <option value='value-1'>Option 1</option>
-      </Select>,
+  it('should render select with defaultValues props', () => {
+    const { getByText } = render(
+      <Select
+        label="Field"
+        options={[
+          { label: 'Option 1', value: 'CAMERA' },
+          { label: 'Option 2', value: 'SENSOR' },
+        ]}
+        defaultValue="SENSOR"
+      />,
     )
 
-    const select = container.querySelector('select')
+    expect(getByText('Option 2')).toBeTruthy()
+  })
 
-    expect(select).toBe(selectRef.current)
+  it('should render select with feedback props', () => {
+    const { getByText } = render(
+      <Select
+        label="Field"
+        options={[{ label: 'Option 1', value: 'CAMERA' }]}
+        feedback="Field feedback"
+      />,
+    )
+
+    expect(getByText('Field feedback')).toBeTruthy()
   })
 
   it('should change select value', () => {
-    const { container } = render(
-      <Select label='Field'>
-        <option value='value-1'>Option 1</option>
-        <option value='value-2'>Option 2</option>
-      </Select>,
+    const { getByText } = render(
+      <Select
+        label="Field"
+        options={[
+          { label: 'Option 1', value: 'CAMERA' },
+          { label: 'Option 2', value: 'SENSOR' },
+        ]}
+      />,
     )
 
-    const select = container.querySelector('select')
-    const options = container.querySelectorAll('option')
+    expect(getByText('Option 1')).toBeTruthy()
 
-    fireEvent.click(select!)
-    fireEvent.click(options[0]!)
+    fireEvent.press(getByText('Option 1'))
+    fireEvent.press(getByText('Option 2'))
 
-    expect(options[0]?.selected).toBeTruthy()
-    expect(options[1]?.selected).toBeFalsy()
-    expect(select).toHaveValue('value-1')
+    expect(getByText('Option 2')).toBeTruthy()
+  })
+
+  it('should hide options after selection', () => {
+    const { queryByText, getByText, getAllByText } = render(
+      <Select
+        label="Field"
+        options={[
+          { label: 'Option 1', value: 'CAMERA' },
+          { label: 'Option 2', value: 'SENSOR' },
+        ]}
+      />,
+    )
+
+    fireEvent.press(getByText('Option 1'))
+
+    expect(getByText('Option 2')).toBeTruthy()
+
+    fireEvent.press(getAllByText('Option 1')[1])
+
+    expect(queryByText('Option 2')).toBeFalsy()
+  })
+
+  it('should call onChangeValue function', () => {
+    const mockOnChangeValue = jest.fn()
+
+    const { getByText } = render(
+      <Select
+        label="Field"
+        options={[
+          { label: 'Option 1', value: 'CAMERA' },
+          { label: 'Option 2', value: 'SENSOR' },
+        ]}
+        onChangeValue={mockOnChangeValue}
+      />,
+    )
+
+    fireEvent.press(getByText('Option 1'))
+    fireEvent.press(getByText('Option 2'))
+
+    expect(mockOnChangeValue).toBeCalledWith('SENSOR')
   })
 })

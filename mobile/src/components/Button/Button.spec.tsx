@@ -10,7 +10,11 @@ describe('Button', () => {
 
   it('should render with id props', () => {
     const mockOnPress = jest.fn()
-    const { root } = render(<Button onPress={mockOnPress} id='id-foo'>Foo</Button>)
+    const { root } = render(
+      <Button onPress={mockOnPress} id="id-foo">
+        Foo
+      </Button>,
+    )
 
     expect(root.parent?.props.id).toEqual('id-foo')
   })

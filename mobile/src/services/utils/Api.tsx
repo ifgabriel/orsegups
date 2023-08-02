@@ -10,7 +10,7 @@ type Delete = <R>(uri: string) => Promise<HttpResponse<R>>
 
 function API() {
   const axios = AxiosHttpClient()
-  const URL = 'http://192.168.100.64:3005'
+  const URL = 'http://192.168.100.64:3003'
 
   const get: Get = (path, params) =>
     axios.request({

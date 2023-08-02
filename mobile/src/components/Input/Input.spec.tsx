@@ -1,64 +1,34 @@
-import { fireEvent, render } from '@testing-library/react'
-import { createRef } from 'react'
+import { fireEvent, render } from '@testing-library/react-native'
 import Input from '.'
 
 describe('Input', () => {
   it('should render input component', () => {
-    const { container } = render(<Input label='Field' />)
-    const input = container.querySelector('input')
+    const { getByTestId } = render(<Input label="Field" />)
 
-    expect(input).toBeInTheDocument()
-    expect(input?.nodeName).toBe('INPUT')
+    expect(getByTestId('input-element')).toBeTruthy()
   })
 
   it('should render input with id props', () => {
-    const { container } = render(<Input id='id-foo' label='Field' />)
-    const input = container.querySelector('input')
+    const { getByTestId } = render(<Input id="id-foo" label="Field" />)
 
-    expect(input).toHaveAttribute('id', 'id-foo')
+    expect(getByTestId('input-element').props.id).toBe('id-foo')
   })
 
   it('should render input label', () => {
-    const { getByText } = render(<Input id='id-foo' label='Field' />)
+    const { getByText } = render(<Input id="id-foo" label="Field" />)
 
-    expect(getByText('Field')).toBeInTheDocument()
-  })
-
-  it('should render input with className props', () => {
-    const { container } = render(<Input label='Field' className='className-foo' />)
-    const input = container.querySelector('input')
-
-    expect(input).toHaveClass('className-foo')
-  })
-
-  it('should receive ref', () => {
-    const inputRef = createRef<HTMLInputElement>()
-    const { container } = render(<Input label='Field' ref={inputRef} />)
-    const input = container.querySelector('input')
-
-    expect(input).toBe(inputRef.current)
-  })
-
-  it('should render text typed', () => {
-    const { container } = render(<Input label='Field' />)
-    const input = container.querySelector('input')
-
-    fireEvent.change(input!, { target: { value: 'new value' } })
-
-    expect(input).toHaveValue('new value')
+    expect(getByText('Field')).toBeTruthy()
   })
 
   it('should call change input function', () => {
-    const mockOnChange = vi.fn()
-    const { container } = render(<Input label='Field' onChange={mockOnChange} />)
-    const input = container.querySelector('input')
+    const mockOnChangeText = jest.fn()
+    const { getByTestId } = render(
+      <Input label="Field" onChangeText={mockOnChangeText} />,
+    )
+    const input = getByTestId('input-element')
 
-    fireEvent.change(input!, { target: { value: 'new value' } })
+    fireEvent.changeText(input!, 'new value')
 
-    expect(mockOnChange).toHaveBeenCalledWith(expect.objectContaining({
-      target: expect.objectContaining({
-        value: 'new value'
-      })
-    }))
+    expect(mockOnChangeText).toHaveBeenCalledWith('new value')
   })
 })

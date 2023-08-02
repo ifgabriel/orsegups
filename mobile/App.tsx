@@ -1,8 +1,8 @@
-import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import React from 'react'
+import { SafeAreaView, StatusBar } from 'react-native'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
-import { Main } from './src/pages';
+import { Main } from './src/pages'
 
 const queryClient = new QueryClient()
 
@@ -15,4 +15,4 @@ const App = () => (
   </QueryClientProvider>
 )
 
-export default App;
+export default App

@@ -1,7 +1,7 @@
 interface BuildUrlProps {
-  route: string,
-  params?: Record<string, unknown>,
-  queryParams?: Record<string, unknown>,
+  route: string
+  params?: Record<string, unknown>
+  queryParams?: Record<string, unknown>
 }
 
 const buildUrl = ({ route, params = {}, queryParams = {} }: BuildUrlProps) => {
@@ -9,15 +9,16 @@ const buildUrl = ({ route, params = {}, queryParams = {} }: BuildUrlProps) => {
     route = route.replace(`:${key}`, String(value))
   }
 
-  const queryString = Object.entries(queryParams)
-    .map(([key, value]) => {
-      if (Array.isArray(value)) {
-        value = value.join(',')
-      }
+  const queryString =
+    Object.entries(queryParams)
+      .map(([key, value]) => {
+        if (Array.isArray(value)) {
+          value = value.join(',')
+        }
 
-      return `${key}=${value}`
-
-    }).join('&') ?? ''
+        return `${key}=${value}`
+      })
+      .join('&') ?? ''
 
   return `${route}${queryString && `?${queryString}`}`
 }

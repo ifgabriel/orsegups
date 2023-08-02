@@ -1,8 +1,8 @@
 import { Pressable, PressableProps, Text } from 'react-native'
 import { styles } from './styles'
 
-interface ButtonProps extends PressableProps {
-  children: string,
+interface ButtonProps extends Omit<PressableProps, 'children'> {
+  children: string
 }
 
 const Button = ({ children, ...props }: ButtonProps) => (

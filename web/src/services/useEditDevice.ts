@@ -9,16 +9,17 @@ import { buildUrl } from './utils'
 const useEditDevice = () => {
   const client = useQueryClient()
 
-  return useMutation(({ id, ...params }: ModelDevice) => {
-    const path = buildUrl({ route: endpoints.editDevice, params: { id } })
+  return useMutation(
+    ({ id, ...params }: ModelDevice) => {
+      const path = buildUrl({ route: endpoints.editDevice, params: { id } })
 
-    return Api.patch(path, params)
-  },
+      return Api.patch(path, params)
+    },
     {
       onSuccess: () => {
         client.invalidateQueries('fetch-devices')
-      }
-    }
+      },
+    },
   )
 }
 

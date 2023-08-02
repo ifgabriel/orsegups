@@ -8,16 +8,17 @@ import { Api } from './utils/Api'
 const useDeleteDevice = () => {
   const client = useQueryClient()
 
-  return useMutation((id: ModelDevice['id']) => {
-    const path = buildUrl({ route: endpoints.deleteDevice, params: { id } })
+  return useMutation(
+    (id: ModelDevice['id']) => {
+      const path = buildUrl({ route: endpoints.deleteDevice, params: { id } })
 
-    return Api.delete(path)
-  },
+      return Api.delete(path)
+    },
     {
       onSuccess: () => {
         client.invalidateQueries('fetch-devices')
-      }
-    }
+      },
+    },
   )
 }
 

@@ -1,18 +1,29 @@
 import { render } from '@testing-library/react-native'
+import { Button } from 'react-native'
 import Device from '.'
 import { ModelDevice } from '../../domain'
 
 const DeviceComponent = () => (
   <Device.Root>
-    <Device.Content macAddress='00:00:00:00:00:00' name='device-name' serial='device-serial' type='SENSOR' id='1' />
-    <Device.Icon type='SENSOR' />
+    <Device.Content
+      macAddress="00:00:00:00:00:00"
+      name="device-name"
+      serial="device-serial"
+      type="SENSOR"
+      id="1"
+    />
+    <Device.Icon type="SENSOR" />
     <Device.Actions>
-      <button>Device Action</button>
+      <Button title="Device Action" />
     </Device.Actions>
   </Device.Root>
 )
 
-const deviceTypes = ['CAMERA', 'SENSOR', 'REMOTE_CONTROL'] as ModelDevice['type'][]
+const deviceTypes = [
+  'CAMERA',
+  'SENSOR',
+  'REMOTE_CONTROL',
+] as ModelDevice['type'][]
 
 describe('Device', () => {
   it('should render device component', () => {
@@ -30,15 +41,9 @@ describe('Device', () => {
   })
 
   it('should render device action children', () => {
-    const { getByRole } = render(<DeviceComponent />)
+    const { getByText } = render(<DeviceComponent />)
 
-    expect(getByRole('button')).toBeTruthy()
-  })
-
-  it('should render device action children', () => {
-    const { getByRole } = render(<DeviceComponent />)
-
-    expect(getByRole('button')).toBeTruthy()
+    expect(getByText('Device Action')).toBeTruthy()
   })
 
   it.each(deviceTypes)('should render device with %s icon', (type) => {

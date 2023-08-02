@@ -1,15 +1,16 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react-native'
+import { Button, Text } from 'react-native'
 import Modal from '.'
 
 const ModalComponent = () => (
   <Modal.Root>
     <Modal.Trigger>
-      <button type='button'>Open</button>
+      <Button title="Open" />
     </Modal.Trigger>
     <Modal.Content>
-      <h1>Content</h1>
+      <Text>Content</Text>
       <Modal.Trigger>
-        <button type='button'>Close</button>
+        <Button title="Close" />
       </Modal.Trigger>
     </Modal.Content>
   </Modal.Root>
@@ -17,82 +18,44 @@ const ModalComponent = () => (
 
 describe('Modal', () => {
   it('should render modal component', () => {
-    const { container, getByText } = render(<ModalComponent />)
+    const { queryByTestId, getByText } = render(<ModalComponent />)
 
-    expect(getByText('Open')).toBeInTheDocument()
-    expect(container.querySelector('main')).not.toBeInTheDocument()
+    expect(getByText('Open')).toBeTruthy()
+    expect(queryByTestId('modal-content-element')).toBeFalsy()
   })
 
   it('should open content modal component', () => {
-    const { container, getByText } = render(<ModalComponent />)
+    const { getByTestId, getByText } = render(<ModalComponent />)
 
-    fireEvent.click(getByText('Open'))
+    fireEvent.press(getByText('Open'))
 
-    expect(getByText('Content')).toBeInTheDocument()
-    expect(container.querySelector('main')).toBeInTheDocument()
+    expect(getByText('Content')).toBeTruthy()
+    expect(getByTestId('modal-content-element')).toBeTruthy()
   })
 
   it('should close content modal component', () => {
-    const { container, getByText } = render(<ModalComponent />)
+    const { queryByTestId, getByText } = render(<ModalComponent />)
 
-    fireEvent.click(getByText('Open'))
-    fireEvent.click(getByText('Close'))
+    fireEvent.press(getByText('Open'))
+    fireEvent.press(getByText('Close'))
 
-    expect(getByText('Open')).toBeInTheDocument()
-    expect(container.querySelector('main')).not.toBeInTheDocument()
+    expect(getByText('Open')).toBeTruthy()
+    expect(queryByTestId('modal-content-element')).toBeFalsy()
   })
 
   it('should call onPress trigger', () => {
-    const mockOnPress = vi.fn()
+    const mockOnPress = jest.fn()
 
     const { getByText } = render(
       <Modal.Root>
         <Modal.Trigger>
-          <button onPress={mockOnPress}>
-            Trigger
-          </button>
+          <Button title="Trigger" onPress={mockOnPress} />
         </Modal.Trigger>
       </Modal.Root>,
     )
 
-    fireEvent.click(getByText('Trigger'))
+    fireEvent.press(getByText('Trigger'))
 
     expect(mockOnPress).toBeCalled()
-  })
-
-  it('should render content with className props', () => {
-    const { container, getByText } = render(
-      <Modal.Root>
-         <Modal.Trigger>
-          <button>
-            Trigger
-          </button>
-        </Modal.Trigger>
-        <Modal.Content className='className-foo'>
-          <h1>Content</h1>
-        </Modal.Content>
-      </Modal.Root>,
-    )
-    
-    fireEvent.click(getByText('Trigger'))
-    expect(container.querySelector('main')).toHaveClass('className-foo')
-  })
-
-  it('should render content with id props', () => {
-    const { container, getByText } = render(
-      <Modal.Root>
-         <Modal.Trigger>
-          <button>
-            Trigger
-          </button>
-        </Modal.Trigger>
-        <Modal.Content id='id-foo'>
-          <h1>Content</h1>
-        </Modal.Content>
-      </Modal.Root>,
-    )
-    
-    fireEvent.click(getByText('Trigger'))
-    expect(container.querySelector('main')).toHaveAttribute('id', 'id-foo')
   })
 })

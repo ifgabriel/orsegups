@@ -3,26 +3,19 @@ import { Text, View } from 'react-native'
 import { styles } from './styles'
 
 interface ExceptionStateProps {
-  title: string,
-  description: string,
-  type: 'ERROR' | 'EMPTY'
+  title: string
+  description: string
+  type: 'error' | 'empty'
 }
 
 const ExceptionState = ({ title, description, type }: ExceptionStateProps) => (
-  <View style={styles.exceptionState}>
+  <View style={styles.exceptionState} testID="exceptionState-element">
     <View style={styles.icon}>
-      {type === 'ERROR'
-        ? <X data-testid='error-icon' />
-        : <FileWarning data-testid='empty-icon' />
-      }
+      {type === 'error' ? <X /> : <FileWarning />}
     </View>
     <View>
-      <Text>
-        {title}
-      </Text>
-      <Text>
-        {description}
-      </Text>
+      <Text>{title}</Text>
+      <Text>{description}</Text>
     </View>
   </View>
 )

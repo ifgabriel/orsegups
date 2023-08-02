@@ -1,9 +1,9 @@
 import { Button, Device, Modal, ModalRef, Skeleton } from '@/components'
 import {
-    useCreateDevice,
-    useDeleteDevice,
-    useEditDevice,
-    useFetchDevices,
+  useCreateDevice,
+  useDeleteDevice,
+  useEditDevice,
+  useFetchDevices,
 } from '@/services'
 import { handleStateRender, joinClassNames } from '@/utils'
 
@@ -24,14 +24,20 @@ const Main = () => {
   const { mutate: deleteDevice } = useDeleteDevice()
 
   const handleOnSubmit = useCallback(
-    (data: ModelDevice) => {
+    (data: Omit<ModelDevice, 'id'>) => {
       if (deviceSelected) {
-        return editDevice(data, {
-          onSuccess: () => {
-            setDeviceSelected(undefined)
-            modalRef.current?.toggle()
+        return editDevice(
+          {
+            id: deviceSelected.id,
+            ...data,
           },
-        })
+          {
+            onSuccess: () => {
+              setDeviceSelected(undefined)
+              modalRef.current?.toggle()
+            },
+          },
+        )
       }
 
       createDevice(data, {
@@ -98,14 +104,14 @@ const Main = () => {
             error: (
               <ExceptionState
                 title="Oopss!"
-                type="ERROR"
+                type="error"
                 description="Tivemos um problema, tente novamente mais tarde!"
               />
             ),
             empty: (
               <ExceptionState
                 title="Oopss!"
-                type="EMPTY"
+                type="empty"
                 description="Nenhum dispositivo cadastrado!"
               />
             ),

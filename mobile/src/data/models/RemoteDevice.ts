@@ -7,9 +7,9 @@ export const TYPES = {
 export type Types = keyof typeof TYPES
 
 export interface RemoteDevice {
-  id: string,
-  name: string,
-  serial: string,
-  macAddress: string,
-  type: Types,
+  id: string
+  name: string
+  serial: string
+  macAddress: string
+  type: Types
 }

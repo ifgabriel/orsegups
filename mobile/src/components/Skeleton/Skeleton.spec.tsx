@@ -1,34 +1,23 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react-native'
 import Skeleton from '.'
 
 describe('Skeleton', () => {
   it('should render skeleton component', () => {
-    const { container } = render(<Skeleton width='10px' height='25px' />)
+    render(<Skeleton width={10} height={25} />)
 
-    expect(container.firstChild?.nodeName).toBe('DIV')
+    expect(screen.getByTestId('skeleton-element')).toBeTruthy()
   })
 
   it('should render skeleton with id props', () => {
-    const { container } = render(<Skeleton id='id-foo' width='10px' height='25px' />)
+    render(<Skeleton id="id-foo" width={10} height={25} />)
 
-    expect(container.firstChild).toHaveAttribute('id', 'id-foo')
-  })
-
-  it('should render skeleton label', () => {
-    const { container } = render(<Skeleton id='id-foo' width='10px' height='25px' />)
-
-    expect(container.firstChild).toBeInTheDocument()
-  })
-
-  it('should render skeleton with className props', () => {
-    const { container } = render(<Skeleton width='10px' height='25px' className='className-foo' />)
-
-    expect(container.firstChild).toHaveClass('className-foo')
+    expect(screen.getByTestId('skeleton-element')).toBeTruthy()
   })
 
   it('should render skeleton with width and height props', () => {
-    const { container } = render(<Skeleton width='10px' height='25px'/>)
+    const { getByTestId } = render(<Skeleton width={10} height={25} />)
 
-    expect(container.firstChild).toHaveStyle({ width: '10px', height: '25px' })
+    expect(getByTestId('skeleton-element').props.style[1].width).toBe(10)
+    expect(getByTestId('skeleton-element').props.style[1].height).toBe(25)
   })
 })

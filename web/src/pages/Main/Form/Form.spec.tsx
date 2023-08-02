@@ -1,25 +1,24 @@
-import { Modal } from '@/components';
-import { fireEvent, render } from '@testing-library/react';
-import Form from '.';
+import { Modal } from '@/components'
+import { fireEvent, render } from '@testing-library/react'
+import Form from '.'
 
-const FormComponent = () => <Form onSubmit={() => { }} onCancel={() => { }} />
+const FormComponent = () => <Form onSubmit={() => {}} onCancel={() => {}} />
 
 describe('Form', () => {
   it('should form component', () => {
-
     const { container } = render(<FormComponent />)
 
-    const input = container.querySelector("form")
+    const input = container.querySelector('form')
 
     expect(input).toBeInTheDocument()
-    expect(input?.nodeName).toBe('FORM');
+    expect(input?.nodeName).toBe('FORM')
   })
 
   it('should render inputs and select', () => {
     const { container } = render(<FormComponent />)
 
-    const inputs = container.querySelectorAll("input")
-    const selects = container.querySelectorAll("select")
+    const inputs = container.querySelectorAll('input')
+    const selects = container.querySelectorAll('select')
 
     expect(inputs.length).toBe(3)
     expect(selects.length).toBe(1)
@@ -37,8 +36,8 @@ describe('Form', () => {
 
     const { getByText } = render(
       <Modal.Root>
-        <Form onSubmit={() => { }} onCancel={mockOnCancel} />
-      </Modal.Root>
+        <Form onSubmit={() => {}} onCancel={mockOnCancel} />
+      </Modal.Root>,
     )
 
     fireEvent.click(getByText('Cancelar'))

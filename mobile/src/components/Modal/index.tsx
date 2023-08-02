@@ -5,7 +5,7 @@ import {
   forwardRef,
   useContext,
   useImperativeHandle,
-  useReducer
+  useReducer,
 } from 'react'
 import { Modal as ModalPrimitive, View, ViewProps } from 'react-native'
 import { styles } from './styles'
@@ -21,32 +21,33 @@ type ModalRef = {
 
 export const ModalContext = createContext({} as ModalContextProps)
 
-const ModalProvider = forwardRef<ModalRef, ViewProps>(
-  (props, ref) => {
-    const [open, toggle] = useReducer((old) => !old, false)
+const ModalProvider = forwardRef<ModalRef, ViewProps>((props, ref) => {
+  const [open, toggle] = useReducer((old) => !old, false)
 
-    useImperativeHandle(ref, () => {
-      return {
-        toggle,
-      }
-    })
+  useImperativeHandle(ref, () => {
+    return {
+      toggle,
+    }
+  })
 
-    return <ModalContext.Provider value={{ open, toggle }} {...props} />
-  },
-)
+  return <ModalContext.Provider value={{ open, toggle }} {...props} />
+})
+
+ModalProvider.displayName = 'ModalProvider'
 
 const Content = (props: ViewProps) => {
-  const { open, toggle } = useContext(ModalContext)
+  const { open } = useContext(ModalContext)
 
   return (
-      <ModalPrimitive visible={open} animationType='slide' transparent={true}>
-        <View style={styles.backDrop}>
-          <View
-            {...props}
-            style={styles.content}
-          />
-        </View>
-      </ModalPrimitive>
+    <ModalPrimitive visible={open} animationType="slide" transparent={true}>
+      <View style={styles.backDrop}>
+        <View
+          {...props}
+          style={styles.content}
+          testID="modal-content-element"
+        />
+      </View>
+    </ModalPrimitive>
   )
 }
 
@@ -63,8 +64,8 @@ const Trigger = ({ children }: { children: ReactElement }) => {
 
 const Modal = {
   Root: ModalProvider,
-  Content: Content,
-  Trigger: Trigger,
+  Content,
+  Trigger,
 }
 
 export default Modal

@@ -9,7 +9,7 @@ import { styles } from './styles'
 type FormType = Omit<ModelDevice, 'id'>
 
 type TypeOptions = {
-  label: string,
+  label: string
   value: ModelDevice['type']
 }
 
@@ -34,15 +34,20 @@ const OptionsType: TypeOptions[] = [
   },
 ]
 
-const schema = yup.object({
-  name: yup.string().required('O campo é obrigatório!'),
-  serial: yup.string().required('O campo é obrigatório!'),
-  macAddress: yup.string().required('O campo é obrigatório!').matches(
-    /^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$/,
-    'O MAC Address deve estar no formato xx:xx:xx:xx:xx:xx'
-  ),
-  type: yup.string<ModelDevice['type']>().required('O campo é obrigatório!'),
-}).required()
+const schema = yup
+  .object({
+    name: yup.string().required('O campo é obrigatório!'),
+    serial: yup.string().required('O campo é obrigatório!'),
+    macAddress: yup
+      .string()
+      .required('O campo é obrigatório!')
+      .matches(
+        /^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$/,
+        'O MAC Address deve estar no formato xx:xx:xx:xx:xx:xx',
+      ),
+    type: yup.string<ModelDevice['type']>().required('O campo é obrigatório!'),
+  })
+  .required()
 
 const applyMacAddressMask = (value: string) => {
   const cleanedValue = value.replace(/[^0-9A-Fa-f]/g, '').slice(0, 12)
@@ -69,7 +74,7 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
     setValue,
     formState: { errors },
   } = useForm<FormType>({
-    defaultValues: defaultValues,
+    defaultValues,
     resolver: yupResolver(schema),
   })
 
@@ -78,7 +83,7 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
       <Input
         {...register('name')}
         value={watch('name')}
-        label='Nome'
+        label="Nome"
         feedback={errors.name?.message}
         onChangeText={(text) => setValue('name', text)}
       />
@@ -86,20 +91,22 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
         {...register('serial')}
         value={watch('serial')}
         onChangeText={(text) => setValue('serial', text)}
-        label='Serial'
+        label="Serial"
         feedback={errors.serial?.message}
       />
       <Input
         {...register('macAddress')}
-        label='MacAdress'
-        placeholder='xx:xx:xx:xx:xx:xx'
+        label="MacAdress"
+        placeholder="xx:xx:xx:xx:xx:xx"
         feedback={errors.macAddress?.message}
         value={watch('macAddress')}
         maxLength={17}
-        onChangeText={(text) => setValue('macAddress', applyMacAddressMask(text))}
+        onChangeText={(text) =>
+          setValue('macAddress', applyMacAddressMask(text))
+        }
       />
       <Select
-        label='Tipo'
+        label="Tipo"
         options={OptionsType}
         defaultValue={watch('type')}
         onChangeValue={(value) => setValue('type', value)}
