@@ -72,7 +72,7 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
     handleSubmit,
     reset,
     setValue,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormType>({
     defaultValues,
     resolver: yupResolver(schema),

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 import Main from '.'
 import {
   useCreateDevice,
@@ -15,6 +15,16 @@ const mockedUseCreateDevice = useCreateDevice as jest.Mock
 const mockedUseDeleteDevice = useDeleteDevice as jest.Mock
 
 describe('Main page', () => {
+  const data = [
+    {
+      id: '1',
+      name: 'Device 1',
+      serial: 'serial1',
+      macAddress: '11:11:11:11:11:11',
+      type: 'CAMERA',
+    },
+  ]
+
   beforeAll(() => {
     mockedUseEditDevice.mockImplementation(() => ({
       mutate: vi.fn(),
@@ -42,15 +52,7 @@ describe('Main page', () => {
 
   it('should render view state', () => {
     mockedUseFetchDevices.mockImplementation(() => ({
-      data: [
-        {
-          id: '1',
-          name: 'Device 1',
-          serial: 'serial1',
-          macAddress: '11:11:11:11:11:11',
-          type: 'CAMERA',
-        },
-      ],
+      data,
       isFetched: true,
     }))
 
@@ -94,5 +96,18 @@ describe('Main page', () => {
     const { getByText } = render(<Main />)
 
     expect(getByText('Nenhum dispositivo cadastrado!')).toBeTruthy()
+  })
+
+  it('should open modal', () => {
+    mockedUseFetchDevices.mockImplementation(() => ({
+      data,
+      isFetched: true,
+    }))
+
+    const { getByText } = render(<Main />)
+
+    fireEvent.click(getByText('Cadastrar Dispositivo'))
+
+    expect(getByText('Dispositivo')).toBeTruthy()
   })
 })
