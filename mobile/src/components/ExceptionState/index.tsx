@@ -9,7 +9,7 @@ interface ExceptionStateProps {
 }
 
 const ExceptionState = ({ title, description, type }: ExceptionStateProps) => (
-  <View style={styles.exceptionState} testID="exceptionState-element">
+  <View style={styles.exceptionState} testID={`exceptionState-element-${type}`}>
     <View style={styles.icon}>
       {type === 'error' ? <X /> : <FileWarning />}
     </View>

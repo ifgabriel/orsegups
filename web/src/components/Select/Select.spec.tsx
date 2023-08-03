@@ -78,8 +78,8 @@ describe('Select', () => {
     fireEvent.click(select!)
     fireEvent.click(options[0]!)
 
-    expect(options[0]?.selected).toBeTruthy();
-    expect(options[1]?.selected).toBeFalsy();
+    expect(options[0]?.selected).toBeTruthy()
+    expect(options[1]?.selected).toBeFalsy()
     expect(select).toHaveValue('value-1')
   })
 })

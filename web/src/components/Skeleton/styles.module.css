@@ -1,5 +1,7 @@
+@import url('@/theme.css');
+
 .Skeleton {
-    background-color: #f0f0f0;
+    background-color: var(--light-200);
     border-radius: 4px;
     animation: loadingAnimation 1.5s infinite ease-in-out;
 }

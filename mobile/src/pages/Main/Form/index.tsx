@@ -16,7 +16,7 @@ type TypeOptions = {
 interface FormProps {
   defaultValues?: ModelDevice
   onCancel: () => void
-  onSubmit: (data: ModelDevice) => void
+  onSubmit: (data: FormType) => void
 }
 
 const OptionsType: TypeOptions[] = [
@@ -96,7 +96,7 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
       />
       <Input
         {...register('macAddress')}
-        label="MacAdress"
+        label="MacAddress"
         placeholder="xx:xx:xx:xx:xx:xx"
         feedback={errors.macAddress?.message}
         value={watch('macAddress')}

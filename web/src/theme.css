@@ -6,6 +6,8 @@
     font-family: 'Inter', sans-serif;
 
     --light: #FFFFFF;
+    --light-100: #F9F9F9;
+    --light-200: #F0F0F0;
 
     --yellow-100: #FABB18;
     --yellow-200: #FABB181A;
@@ -21,7 +23,7 @@
 }
 
 body {
-    background: #F9F9F9;
+    background: var(--light-100);
 }
 
 h2 {

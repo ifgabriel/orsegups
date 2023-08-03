@@ -1,4 +1,8 @@
+import { useCallback, useRef, useState } from 'react'
+
 import { Button, Device, Modal, ModalRef, Skeleton } from '@/components'
+import ExceptionState from '@/components/ExceptionState'
+import { ModelDevice } from '@/domain'
 import {
   useCreateDevice,
   useDeleteDevice,
@@ -7,9 +11,6 @@ import {
 } from '@/services'
 import { handleStateRender, joinClassNames } from '@/utils'
 
-import ExceptionState from '@/components/ExceptionState'
-import { ModelDevice } from '@/domain'
-import { useCallback, useRef, useState } from 'react'
 import Form from './Form'
 import styles from './styles.module.css'
 
@@ -44,7 +45,7 @@ const Main = () => {
         onSuccess: () => modalRef.current?.toggle(),
       })
     },
-    [deviceSelected],
+    [createDevice, deviceSelected, editDevice],
   )
 
   return (
@@ -70,7 +71,7 @@ const Main = () => {
               <ul className={joinClassNames(styles.List)}>
                 {data.map((device) => (
                   <Device.Root key={device.id}>
-                    <Device.Content {...device}>
+                    <Device.Content device={device}>
                       <Device.Icon type={device.type} />
                     </Device.Content>
                     <Device.Actions>

@@ -17,29 +17,29 @@ const ModalComponent = () => (
 
 describe('Modal', () => {
   it('should render modal component', () => {
-    const { container, getByText } = render(<ModalComponent />)
+    const { queryByTestId, getByText } = render(<ModalComponent />)
 
     expect(getByText('Open')).toBeInTheDocument()
-    expect(container.querySelector('main')).not.toBeInTheDocument()
+    expect(queryByTestId('modal-element')).not.toBeInTheDocument()
   })
 
   it('should open content modal component', () => {
-    const { container, getByText } = render(<ModalComponent />)
+    const { getByTestId, getByText } = render(<ModalComponent />)
 
     fireEvent.click(getByText('Open'))
 
     expect(getByText('Content')).toBeInTheDocument()
-    expect(container.querySelector('main')).toBeInTheDocument()
+    expect(getByTestId('modal-element')).toBeInTheDocument()
   })
 
   it('should close content modal component', () => {
-    const { container, getByText } = render(<ModalComponent />)
+    const { queryByTestId, getByText } = render(<ModalComponent />)
 
     fireEvent.click(getByText('Open'))
     fireEvent.click(getByText('Close'))
 
     expect(getByText('Open')).toBeInTheDocument()
-    expect(container.querySelector('main')).not.toBeInTheDocument()
+    expect(queryByTestId('modal-element')).not.toBeInTheDocument()
   })
 
   it('should call onClick trigger', () => {
@@ -48,9 +48,7 @@ describe('Modal', () => {
     const { getByText } = render(
       <Modal.Root>
         <Modal.Trigger>
-          <button onClick={mockOnClick}>
-            Trigger
-          </button>
+          <button onClick={mockOnClick}>Trigger</button>
         </Modal.Trigger>
       </Modal.Root>,
     )
@@ -61,38 +59,34 @@ describe('Modal', () => {
   })
 
   it('should render content with className props', () => {
-    const { container, getByText } = render(
+    const { getByTestId, getByText } = render(
       <Modal.Root>
-         <Modal.Trigger>
-          <button>
-            Trigger
-          </button>
+        <Modal.Trigger>
+          <button>Trigger</button>
         </Modal.Trigger>
         <Modal.Content className="className-foo">
           <h1>Content</h1>
         </Modal.Content>
       </Modal.Root>,
     )
-    
+
     fireEvent.click(getByText('Trigger'))
-    expect(container.querySelector('main')).toHaveClass('className-foo')
+    expect(getByTestId('modal-element')).toHaveClass('className-foo')
   })
 
   it('should render content with id props', () => {
-    const { container, getByText } = render(
+    const { getByTestId, getByText } = render(
       <Modal.Root>
-         <Modal.Trigger>
-          <button>
-            Trigger
-          </button>
+        <Modal.Trigger>
+          <button>Trigger</button>
         </Modal.Trigger>
         <Modal.Content id="id-foo">
           <h1>Content</h1>
         </Modal.Content>
       </Modal.Root>,
     )
-    
+
     fireEvent.click(getByText('Trigger'))
-    expect(container.querySelector('main')).toHaveAttribute('id', 'id-foo')
+    expect(getByTestId('modal-element')).toHaveAttribute('id', 'id-foo')
   })
 })

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { HttpRequest, HttpResponse, HttpClient } from '../data/protocols/http'
+import { HttpClient, HttpRequest, HttpResponse } from '../data/protocols/http'
 
 export function AxiosHttpClient(): HttpClient {
   const instance = axios.create()

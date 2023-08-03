@@ -2,19 +2,19 @@ import React, { useCallback, useRef, useState } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 
 import {
-    Button,
-    Device,
-    ExceptionState,
-    Modal,
-    ModalRef,
-    Skeleton,
+  Button,
+  Device,
+  ExceptionState,
+  Modal,
+  ModalRef,
+  Skeleton,
 } from './../../components'
 import { ModelDevice } from './../../domain'
 import {
-    useCreateDevice,
-    useDeleteDevice,
-    useEditDevice,
-    useFetchDevices,
+  useCreateDevice,
+  useDeleteDevice,
+  useEditDevice,
+  useFetchDevices,
 } from './../../services'
 import Form from './Form'
 
@@ -32,21 +32,27 @@ const Main = () => {
   const { mutate: deleteDevice } = useDeleteDevice()
 
   const handleOnSubmit = useCallback(
-    (data: ModelDevice) => {
+    (data: Omit<ModelDevice, 'id'>) => {
       if (deviceSelected) {
-        return editDevice(data, {
-          onSuccess: () => {
-            setDeviceSelected(undefined)
-            modalRef.current?.toggle()
+        return editDevice(
+          {
+            id: deviceSelected.id,
+            ...data,
           },
-        })
+          {
+            onSuccess: () => {
+              setDeviceSelected(undefined)
+              modalRef.current?.toggle()
+            },
+          },
+        )
       }
 
       createDevice(data, {
         onSuccess: () => modalRef.current?.toggle(),
       })
     },
-    [deviceSelected],
+    [createDevice, deviceSelected, editDevice],
   )
 
   return (

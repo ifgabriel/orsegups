@@ -80,7 +80,7 @@ Para instalar todas as dependências execute
 yarn
 ```
 
-Em `.env` crie a variavel `BACKEND_URL='[IP de sua máquina]'`.
+Em `.env` crie a variável `BACKEND_URL='[IP de sua máquina]:3003'`.
 
 Para visualizar o IP (ipv4) de sua máquina entre no CMD e execute
 ```

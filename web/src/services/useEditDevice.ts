@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from 'react-query'
 
-import endpoints from './endpoints'
-import { Api } from './utils/Api'
-
 import { ModelDevice } from '@/domain'
+
+import endpoints from './endpoints'
 import { buildUrl } from './utils'
+import { Api } from './utils/Api'
 
 const useEditDevice = () => {
   const client = useQueryClient()

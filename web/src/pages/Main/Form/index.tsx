@@ -1,21 +1,23 @@
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+
 import { Button, Input, Modal, Select } from '@/components'
 import { ModelDevice } from '@/domain'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
+
 import styles from './styles.module.css'
 
 type FormType = Omit<ModelDevice, 'id'>
-
-type TypeOptions = {
-  label: string
-  value: ModelDevice['type']
-}
 
 interface FormProps {
   defaultValues?: ModelDevice
   onCancel: () => void
   onSubmit: (data: FormType) => void
+}
+
+type TypeOptions = {
+  label: string
+  value: ModelDevice['type']
 }
 
 const TypeOptions: TypeOptions[] = [
@@ -70,7 +72,7 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
     handleSubmit,
     reset,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormType>({
     defaultValues,
     resolver: yupResolver(schema),
@@ -90,7 +92,7 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
       />
       <Input
         {...register('macAddress')}
-        label="MacAdress"
+        label="MacAddress"
         placeholder="xx:xx:xx:xx:xx:xx"
         feedback={errors.macAddress?.message}
         onChange={(event) =>
@@ -116,6 +118,7 @@ const Form = ({ defaultValues, onSubmit, onCancel }: FormProps) => {
         </Button>
         <Modal.Trigger>
           <Button
+            type="reset"
             onClick={() => {
               onCancel()
               reset()

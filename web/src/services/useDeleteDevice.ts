@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query'
 
 import { ModelDevice } from '@/domain'
+
 import endpoints from './endpoints'
 import { buildUrl } from './utils'
 import { Api } from './utils/Api'

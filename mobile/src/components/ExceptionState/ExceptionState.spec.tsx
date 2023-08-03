@@ -7,7 +7,7 @@ describe('ExceptionState', () => {
       <ExceptionState type="empty" title="title" description="description" />,
     )
 
-    expect(getByTestId('exceptionState-element')).toBeTruthy()
+    expect(getByTestId('exceptionState-element-empty')).toBeTruthy()
   })
 
   it('should render exceptionState with title and description props', () => {

@@ -138,41 +138,6 @@
       "serial": "SM110",
       "macAddress": "CC:DD:EE:FF:AA:BB",
       "type": "SENSOR"
-    },
-    {
-      "id": "21",
-      "name": "Controle Remoto 7",
-      "serial": "CR120",
-      "macAddress": "11:22:33:44:55:66",
-      "type": "REMOTE_CONTROL"
-    },
-    {
-      "id": "22",
-      "name": "Câmera de Segurança 8",
-      "serial": "CS130",
-      "macAddress": "AA:BB:CC:DD:EE:FF",
-      "type": "CAMERA"
-    },
-    {
-      "id": "23",
-      "name": "Sensor de Movimento 8",
-      "serial": "SM140",
-      "macAddress": "01:23:45:67:89:AB",
-      "type": "SENSOR"
-    },
-    {
-      "id": "24",
-      "name": "Controle Remoto 8",
-      "serial": "CR150",
-      "macAddress": "12:34:56:78:90:AB",
-      "type": "REMOTE_CONTROL"
-    },
-    {
-      "id": "25",
-      "name": "Câmera de Segurança 9",
-      "serial": "CS160",
-      "macAddress": "AB:CD:EF:12:34:56",
-      "type": "CAMERA"
     }
   ]
   

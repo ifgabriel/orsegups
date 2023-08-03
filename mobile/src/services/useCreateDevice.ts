@@ -9,7 +9,7 @@ const useCreateDevice = () => {
   const client = useQueryClient()
 
   return useMutation(
-    (params: ModelDevice) => {
+    (params: Omit<ModelDevice, 'id'>) => {
       return Api.post(endpoints.createDevice, params)
     },
     {

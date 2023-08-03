@@ -6,22 +6,30 @@ const FormComponent = () => <Form onSubmit={() => {}} onCancel={() => {}} />
 
 describe('Form', () => {
   it('should form component', () => {
-    const { container } = render(<FormComponent />)
+    const { root } = render(<FormComponent />)
 
-    const input = container.querySelector('form')
+    const form = root.children[0]
 
-    expect(input).toBeTruthy()
-    expect(input?.nodeName).toBe('FORM')
+    expect(form).toBeTruthy()
   })
 
   it('should render inputs and select', () => {
-    const { container } = render(<FormComponent />)
+    const { getByTestId, getAllByTestId } = render(<FormComponent />)
 
-    const inputs = container.querySelectorAll('input')
-    const selects = container.querySelectorAll('select')
+    const inputs = getAllByTestId('input-element')
+    const selects = getByTestId('select-element')
 
     expect(inputs.length).toBe(3)
-    expect(selects.length).toBe(1)
+    expect(selects).toBeTruthy()
+  })
+
+  it('should render input label', () => {
+    const { getByText } = render(<FormComponent />)
+
+    expect(getByText('Nome')).toBeTruthy()
+    expect(getByText('Serial')).toBeTruthy()
+    expect(getByText('MacAddress')).toBeTruthy()
+    expect(getByText('Tipo')).toBeTruthy()
   })
 
   it('should render buttons', () => {

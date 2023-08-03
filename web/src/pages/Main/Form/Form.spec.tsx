@@ -8,10 +8,10 @@ describe('Form', () => {
   it('should form component', () => {
     const { container } = render(<FormComponent />)
 
-    const input = container.querySelector('form')
+    const form = container.querySelector('form')
 
-    expect(input).toBeInTheDocument()
-    expect(input?.nodeName).toBe('FORM')
+    expect(form).toBeInTheDocument()
+    expect(form?.nodeName).toBe('FORM')
   })
 
   it('should render inputs and select', () => {

@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from 'react-query'
 
+import { ModelDevice } from '@/domain'
+
 import endpoints from './endpoints'
 import { Api } from './utils/Api'
-
-import { ModelDevice } from '@/domain'
 
 const useCreateDevice = () => {
   const client = useQueryClient()
