@@ -1,5 +1,7 @@
 # ORSEGUPS - DEVICES
 
+O sistema é uma plataforma que permite aos usuários cadastrar, editar e excluir dispositivos eletrônicos. Ele está disponível tanto na web, acessível por navegadores, quanto por meio de um aplicativo para dispositivos móveis.
+
 ### Web
 <div style="display: flex; gap: 16px">
     <img src="assets/web1.png" alt="Projeto Web" width="240px" height="300px">
